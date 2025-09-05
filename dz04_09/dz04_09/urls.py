@@ -21,5 +21,6 @@ from dz04_09_25 import views
 
 urlpatterns = [
     path("", views.index),
-    path("company", views.company_info)
+    path("company", views.company_info),
+    path("projects", views.project_list)
 ]

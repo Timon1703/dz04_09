@@ -22,3 +22,18 @@ class AvtosallonEncoder(DjangoJSONEncoder):
             return{"name": obj.name, "founded": obj.founded, "employees": obj.employees}
         return super().default(obj)
     
+
+
+def project_list(request):
+    listok = ListResp(["Project Alpha", "Project Beta", "Project Gamma"])
+    return JsonResponse(listok, safe=False, encoder=ListEncoder)
+
+class ListResp:
+    def __init__(self,list):
+        self.list = list
+
+class ListEncoder(DjangoJSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, ListResp):
+            return {"listok": obj.listok}
+        return super().default(obj)
